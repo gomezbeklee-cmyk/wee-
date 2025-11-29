@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CyberSentinel Solutions — Ciberseguridad Integral</title>
+  <meta name="description" content="Protegemos tu mundo digital con innovación, confianza y experiencia. Servicios de consultoría, gestión de incidentes, ciberinteligencia, protección de infraestructuras críticas, formación y seguridad en la nube.">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa6b2;
+      --accent:#00b39f;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --container:1100px;
+      --max-width:1200px;
+      --fg:#e6eef6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,var(--bg) 0%, #07101a 100%);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:100px;
+    }
+    .container{max-width:var(--container);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#006bff);display:grid;place-items:center}
+    .logo svg{width:34px;height:34px}
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    nav{display:flex;gap:18px;align-items:center}
+    a.navlink{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;transition:all .25s ease}
+    a.navlink:hover{color:var(--fg);background:var(--glass)}
+    .cta{background:var(--accent);color:#051018;padding:10px 14px;border-radius:12px;font-weight:600;text-decoration:none}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:34px 0}
+    .hero .kicker{color:var(--accent);font-weight:700;letter-spacing:0.6px}
+    .hero h2{font-size:34px;margin:8px 0 10px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,0.45);transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-6px)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+    .feature{padding:14px;border-radius:12px;background:rgba(255,255,255,0.01)}
+    .feature h4{margin:8px 0 6px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+    .full{grid-column:1/-1}
+    section{margin-top:28px}
+    .list{display:flex;flex-direction:column;gap:10px}
+    .values{display:flex;flex-wrap:wrap;gap:10px}
+    .value{background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:10px;color:var(--muted)}
+    footer{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input[type=text],input[type=email],textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:var(--fg);outline:none}
+    input:focus,textarea:focus,select:focus{box-shadow:0 0 0 4px rgba(0,179,159,0.08);border-color:var(--accent)}
+    button{background:var(--accent);border:none;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+    .sectors{display:flex;flex-wrap:wrap;gap:12px}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+    /* ====== Mobile menu & hamburger ====== */
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);align-items:center;justify-content:center;cursor:pointer}
+    .hamburger .bar{width:20px;height:2px;background:var(--fg);display:block;position:relative;transition:all .3s}
+    .hamburger .bar::before,.hamburger .bar::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--fg);transition:all .3s}
+    .hamburger .bar::before{top:-6px}
+    .hamburger .bar::after{top:6px}
+    .hamburger.active .bar{background:transparent}
+    .hamburger.active .bar::before{transform:translateY(6px) rotate(45deg)}
+    .hamburger.active .bar::after{transform:translateY(-6px) rotate(-45deg)}
+
+    .mobile-menu{position:fixed;top:0;right:-100%;height:100%;width:320px;max-width:92%;background:linear-gradient(180deg, rgba(11,18,32,0.98), rgba(6,10,16,0.98));box-shadow:-8px 0 30px rgba(0,0,0,0.6);transition:right .35s; padding:26px;z-index:1200}
+    .mobile-menu.open{right:0}
+    .mobile-menu nav{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+    .mobile-menu a{padding:10px;border-radius:10px;color:var(--fg)}
+    .overlay{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.45);opacity:0;pointer-events:none;transition:opacity .25s}
+    .overlay.show{opacity:1;pointer-events:auto}
+
+    /* ====== WhatsApp floating button ====== */
+    .whatsapp-btn{
+      position:fixed;right:20px;bottom:20px;width:62px;height:62px;border-radius:999px;background:linear-gradient(135deg,#25D366,#00b39f);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,0.45);z-index:1400;cursor:pointer;border:none;transition:transform .22s,box-shadow .22s;
+    }
+    .whatsapp-btn:hover{ transform: translateY(-6px) rotate(-4deg); box-shadow:0 18px 40px rgba(0,0,0,0.55) }
+    .whatsapp-btn img{width:28px;height:28px}
+
+    .whatsapp-menu{position:fixed;right:94px;bottom:28px;background:linear-gradient(180deg,#051018, rgba(5,16,24,0.85));padding:12px;border-radius:12px;color:var(--fg);box-shadow:0 12px 30px rgba(0,0,0,0.45);display:none;z-index:1400}
+    .whatsapp-menu.show{display:block}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:1fr}
+      .hamburger{display:flex}
+      nav[aria-label="Navegación principal"]{display:none}
+    }
+    @media (max-width:520px){
+      .features{grid-template-columns:1fr}
+      header{flex-direction:row;align-items:center;gap:12px}
+      .brand h1{font-size:15px}
+    }
+
+    /* small decorative animation */
+    .pulse { animation: pulse 2.2s infinite; }
+    @keyframes pulse { 0%{ transform: translateY(0) scale(1)} 50%{ transform: translateY(-4px) scale(1.01)} 100%{ transform: translateY(0) scale(1)} }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header data-aos="fade-down" data-aos-duration="600">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" fill="#fff" opacity=".08"/>
+            <path d="M7 10h10v4H7z" fill="#fff" opacity=".14"/>
+          </svg>
+        </div>
+        <div>
+          <h1>CyberSentinel Solutions</h1>
+          <div style="color:var(--muted);font-size:13px">Protegemos tu mundo digital</div>
+        </div>
+      </div>
+
+      <nav aria-label="Navegación principal" data-aos="fade-left" data-aos-duration="600">
+        <a class="navlink" href="#servicios">Servicios</a>
+        <a class="navlink" href="#sectores">Sectores</a>
+        <a class="navlink" href="#mision">Misión</a>
+        <a class="navlink" href="#contacto">Contacto</a>
+        <a class="cta" href="#contacto">Solicitar evaluación</a>
+      </nav>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span class="bar"></span>
+      </button>
+    </header>
+
+    <!-- Mobile sliding menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="logo" style="width:44px;height:44px"></div>
+          <div>
+            <strong>CyberSentinel</strong><div style="font-size:13px;color:var(--muted)">Navegación</div>
+          </div>
+        </div>
+        <button id="mobileClose" class="hamburger" aria-label="Cerrar menú">
+          <span class="bar"></span>
+        </button>
+      </div>
+
+      <nav style="margin-top:20px">
+        <a href="#servicios" class="navlink">Servicios</a><br>
+        <a href="#sectores" class="navlink">Sectores</a><br>
+        <a href="#mision" class="navlink">Misión</a><br>
+        <a href="#contacto" class="navlink">Contacto</a><br>
+        <a href="#contacto" class="cta">Solicitar evaluación</a>
+      </nav>
+
+      <div style="margin-top:18px;color:var(--muted);font-size:13px">
+        Email: contacto@cybersentinel.solutions<br>
+        Tel: +34 600 000 000
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+      <section class="hero" data-aos="fade-up" data-aos-duration="800">
+        <div>
+          <div class="kicker">CIBERSEGURIDAD INTEGRAL</div>
+          <h2>Protegemos tu mundo digital con innovación, confianza y experiencia</h2>
+          <p>Soluciones de seguridad informática diseñadas para garantizar la confidencialidad, integridad y disponibilidad de la información. Servicios a medida para organizaciones del sector financiero, sanitario, educativo, gubernamental y PYMEs tecnológicas.</p>
+          <div style="display:flex;gap:12px;align-items:center">
+            <a class="cta" href="#contacto">Solicitar auditoría</a>
+            <a class="navlink" href="#servicios">Ver servicios</a>
+          </div>
+
+          <div class="card" style="margin-top:20px" data-aos="zoom-in" data-aos-duration="700">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:13px;color:var(--muted)">Estrategia Comercial</div>
+                <div style="font-weight:700;margin-top:6px">Objetivo: Posicionarse como referente nacional e internacional</div>
+              </div>
+              <div style="text-align:right;color:var(--muted)">Crecimiento mediante innovación</div>
+            </div>
+
+            <div class="features">
+              <div class="feature" data-aos="fade-up" data-aos-delay="80">
+                <strong>Consultoría</strong>
+                <div style="color:var(--muted);font-size:13px;margin-top:6px">Evaluaciones de riesgo, cumplimiento y arquitecturas seguras.</div>
+              </div>
+              <div class="feature" data-aos="fade-up" data-aos-delay="180">
+                <strong>Gestión de incidentes</strong>
+                <div style="color:var(--muted);font-size:13px;margin-top:6px">Respuesta rápida y planes de remediación para minimizar impacto.</div>
+              </div>
+              <div class="feature" data-aos="fade-up" data-aos-delay="300">
+                <strong>Ciberinteligencia 24/7</strong>
+                <div style="color:var(--muted);font-size:13px;margin-top:6px">Monitoreo continuo y análisis proactivo de amenazas.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <aside class="card" aria-labelledby="oferta" role="complementary" data-aos="fade-left" data-aos-duration="800">
+          <h3 id="oferta">Oferta destacada</h3>
+          <p style="color:var(--muted);font-size:14px">Pack de Evaluación Rápida: diagnóstico en 7 días, informe ejecutivo y hoja de ruta priorizada.</p>
+
+          <div style="margin-top:12px">
+            <ul style="color:var(--muted);padding-left:18px;margin:0">
+              <li>Evaluación de superficie de ataque</li>
+              <li>Pruebas de penetración enfocadas</li>
+              <li>Recomendaciones para continuidad del negocio</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:10px;flex-direction:column">
+            <a class="cta" href="#contacto">Solicitar diagnóstico</a>
+            <a class="navlink" href="#servicios">Ver portafolio completo</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="servicios" data-aos="fade-up" data-aos-duration="700">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>Servicios principales</h3>
+          <div style="color:var(--muted);font-size:14px">Soluciones integrales y personalizadas</div>
+        </div>
+
+        <div class="grid">
+          <div class="card" data-aos="fade-right" data-aos-duration="700">
+            <h4>1. Consultoría en ciberseguridad</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Análisis de riesgos, cumplimiento normativo, diseño de arquitecturas seguras y asesoramiento estratégico.</p>
+          </div>
+
+          <div class="card" data-aos="fade-left" data-aos-duration="700">
+            <h4>2. Gestión de incidentes</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Detección, contención, erradicación y recuperación. Forense digital y soporte legal cuando procede.</p>
+          </div>
+
+          <div class="card" data-aos="fade-right" data-aos-duration="700">
+            <h4>3. Ciberinteligencia y monitoreo 24/7</h4>
+            <p style="color:var(--muted);margin:6px 0 0">SOC gestionado, detección de amenazas y alertas priorizadas para proteger activos críticos.</p>
+          </div>
+
+          <div class="card" data-aos="fade-left" data-aos-duration="700">
+            <h4>4. Protección de infraestructuras críticas</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Evaluaciones específicas para sistemas críticos, hardening y medidas de segmentación de red.</p>
+          </div>
+
+          <div class="card" data-aos="fade-right" data-aos-duration="700">
+            <h4>5. Formación y concienciación</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Programas para personal ejecutivo y equipos técnicos, simulacros de phishing y entrenamientos prácticos.</p>
+          </div>
+
+          <div class="card" data-aos="fade-left" data-aos-duration="700">
+            <h4>6. Seguridad en la nube</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Evaluación de configuraciones, protección de workloads y mejores prácticas para entornos multi-cloud.</p>
+          </div>
+
+          <div class="card full" data-aos="zoom-in" data-aos-duration="800">
+            <h4>Propuesta de valor</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Enfoque integral y soluciones personalizadas para garantizar la confidencialidad, integridad y disponibilidad de la información. Combinamos experiencia técnica, innovación y compromiso ético para asegurar la continuidad operativa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sectores" data-aos="fade-up" data-aos-duration="700">
+        <h3>Sectores objetivo</h3>
+        <p style="color:var(--muted);margin:6px 0 12px">Atendemos a organizaciones con altos requisitos de seguridad y PYMEs en transformación digital.</p>
+        <div class="sectors">
+          <div class="chip">Financiero</div>
+          <div class="chip">Sanitario</div>
+          <div class="chip">Educativo</div>
+          <div class="chip">Gubernamental</div>
+          <div class="chip">PYMEs tecnológicas</div>
+        </div>
+      </section>
+
+      <!-- MISION (visible) -->
+      <section id="mision" data-aos="fade-up" data-aos-duration="700">
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:14px">
+          <div class="card" style="flex:1;min-width:280px" data-aos="fade-right">
+            <h4>Misión</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Proteger la información y los sistemas tecnológicos mediante soluciones avanzadas, garantizando continuidad del negocio y la confianza de los clientes.</p>
+          </div>
+
+          <div class="card" style="flex:1;min-width:280px" data-aos="fade-left">
+            <h4>Visión</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Ser líderes en ciberseguridad en el mercado hispanohablante, destacando por excelencia técnica, ética y capacidad de anticipar amenazas.</p>
+          </div>
+
+          <div class="card" style="flex-basis:100%" data-aos="zoom-in">
+            <h4>Valores corporativos</h4>
+            <div class="values" style="margin-top:8px">
+              <div class="value">Confianza</div>
+              <div class="value">Integridad</div>
+              <div class="value">Innovación</div>
+              <div class="value">Excelencia</div>
+              <div class="value">Compromiso</div>
+              <div class="value">Colaboración</div>
+              <div class="value">Educación y concienciación</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" data-aos="fade-up" data-aos-duration="700">
+        <h3>Contacto</h3>
+        <div class="grid" style="align-items:start">
+          <div class="card" data-aos="fade-right">
+            <h4>Solicita una evaluación</h4>
+            <p style="color:var(--muted);margin:6px 0 12px">Rellena el formulario y nuestro equipo se pondrá en contacto para coordinar la auditoría y presentar una propuesta personalizada.</p>
+            <form id="contactForm" novalidate>
+              <label for="name" style="color:var(--muted);font-size:13px">Nombre</label>
+              <input id="name" name="name" type="text" required placeholder="Tu nombre">
+
+              <label for="email" style="color:var(--muted);font-size:13px">Email</label>
+              <input id="email" name="email" type="email" required placeholder="tu@empresa.com">
+
+              <label for="org" style="color:var(--muted);font-size:13px">Organización</label>
+              <input id="org" name="org" type="text" placeholder="Nombre de la organización">
+
+              <label for="sector" style="color:var(--muted);font-size:13px">Sector</label>
+              <select id="sector" name="sector">
+                <option>Selecciona</option>
+                <option>Financiero</option>
+                <option>Sanitario</option>
+                <option>Educativo</option>
+                <option>Gubernamental</option>
+                <option>PYME tecnológica</option>
+                <option>Otro</option>
+              </select>
+
+              <label for="message" style="color:var(--muted);font-size:13px">Mensaje</label>
+              <textarea id="message" name="message" rows="4" placeholder="Cuéntanos tu necesidad (breve)"></textarea>
+
+              <div style="display:flex;gap:10px;margin-top:8px;align-items:center">
+                <button type="submit">Enviar solicitud</button>
+                <button type="button" id="sendWhats" style="background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;cursor:pointer">Enviar por WhatsApp</button>
+              </div>
+
+              <div id="formMsg" style="color:var(--muted);font-size:13px;margin-top:8px;display:none"></div>
+            </form>
+          </div>
+
+          <aside class="card" style="min-width:260px" data-aos="fade-left">
+            <h4>Información</h4>
+            <p style="color:var(--muted);margin:6px 0 0">Email: contacto@cybersentinel.solutions</p>
+            <p style="color:var(--muted);margin:6px 0 0">Tel: +34 600 000 000</p>
+            <p style="color:var(--muted);margin:6px 0 0">Ubicación: Madrid, España</p>
+
+            <div style="margin-top:12px">
+              <a class="navlink" href="#">Política de privacidad</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer data-aos="fade-up" data-aos-duration="700">
+      <div>© <span id="year"></span> CyberSentinel Solutions S.L.</div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="navlink" href="#mision">Misión</a>
+        <a class="navlink" href="#servicios">Servicios</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- WhatsApp floating button -->
+  <button class="whatsapp-btn" id="whatsappBtn" aria-label="Contactar por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </button>
+
+  <div class="whatsapp-menu" id="whatsappMenu" role="dialog" aria-hidden="true">
+    <div style="font-weight:700;margin-bottom:6px">Enviar mensaje</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:8px">¿Quieres enviar un mensaje rápido?</div>
+    <button id="waContact" style="display:block;width:100%;background:var(--accent);color:#051018;padding:10px;border-radius:8px;border:none;cursor:pointer">Enviar ahora</button>
+  </div>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 80 });
+
+    // Mobile menu handlers
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu(){
+      hamburger.classList.add('active');
+      mobileMenu.classList.add('open');
+      overlay.classList.add('show');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+    function closeMenu(){
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      overlay.classList.remove('show');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+
+    hamburger.addEventListener('click', () => {
+      if(mobileMenu.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+    if(mobileClose) mobileClose.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => closeMenu()));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    if(form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        if(!name || !email){
+          msg.style.display = 'block';
+          msg.style.color = '#ffcccb';
+          msg.textContent = 'Por favor completa nombre y correo.';
+          return;
+        }
+        msg.style.display = 'block';
+        msg.style.color = 'var(--muted)';
+        msg.textContent = 'Gracias — tu solicitud ha sido registrada. Nos pondremos en contacto.';
+        form.reset();
+      });
+    }
+
+    // WhatsApp integration
+    // User provided number: 8293238568 -> formatted international for wa.me: 18293238568
+    const WHATSAPP_NUMBER = '18293238568';
+
+    function openWhatsApp(prefillText){
+      const text = encodeURIComponent(prefillText || 'Hola, quiero más información sobre sus servicios.');
+      const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+      window.open(url, '_blank');
+    }
+
+    // Floating button + mini menu
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const whatsappMenu = document.getElementById('whatsappMenu');
+    const waContact = document.getElementById('waContact');
+    let waMenuOpen = false;
+
+    whatsappBtn.addEventListener('click', () => {
+      waMenuOpen = !waMenuOpen;
+      if(waMenuOpen){
+        whatsappMenu.classList.add('show');
+      } else {
+        whatsappMenu.classList.remove('show');
+      }
+    });
+
+    waContact.addEventListener('click', () => {
+      openWhatsApp('Hola, quiero solicitar una auditoría/evaluación. Por favor, indíquenme los pasos.');
+    });
+
+    // Send form content via WhatsApp button
+    const sendWhats = document.getElementById('sendWhats');
+    if(sendWhats){
+      sendWhats.addEventListener('click', () => {
+        const name = (document.getElementById('name')?.value || '').trim();
+        const email = (document.getElementById('email')?.value || '').trim();
+        const org = (document.getElementById('org')?.value || '').trim();
+        const message = (document.getElementById('message')?.value || '').trim();
+        const text = `Hola, soy ${name || '[nombre]'} ${org ? 'de ' + org : ''}. Email: ${email || '[email]'}. Mensaje: ${message || '[sin mensaje]'}.`;
+        openWhatsApp(text);
+      });
+    }
+
+    // Accessibility: close menus with Escape
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape'){
+        closeMenu();
+        if(waMenuOpen){
+          waMenuOpen = false;
+          whatsappMenu.classList.remove('show');
+        }
+      }
+    });
+
+    // Lazy load images if any
+    document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
+
+  </script>
+</body>
+</html>
